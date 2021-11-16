@@ -12,6 +12,8 @@ AllCops:
     - 'test/**/*'
     - 'Gemfile'
     - 'Rakefile'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
 
 Metrics/LineLength:
   Max: 100
