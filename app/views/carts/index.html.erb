@@ -1,0 +1,23 @@
+<div class="row">
+  <h1 class="col-md-10">Carts</h1>
+
+  <%= link_to("New Cart", new_cart_url, class: "btn btn-primary col-sm-2 mt-3 mb-3") %>
+</div>
+
+<table class="table">
+
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @carts.each do |cart| %>
+      <tr>
+        <td> <%= cart.name %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
