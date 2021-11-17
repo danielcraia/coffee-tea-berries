@@ -16,8 +16,14 @@
     <% @cart.cart_products.each do |cp| %>
       <tr>
         <td><%= cp.product.name %></td>
-        <td><%= cp.quantity %></td>
+        <td>
+          <%= form_with model: cp, url: cart_product_path(cp.id), method: :put, scope: :cart_product do |f| %>
+            <%= f.number_field :quantity, value: cp.quantity, step: 1 %>
+            <%= f.submit "Change", class: "btn btn-primary" %>
+          <% end %>
+        </td>
         <td><%= cp.total_price %>€</td>
+        <td><%= link_to "Delete", cart_product_path(cp.id), class: "btn btn-danger", method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
