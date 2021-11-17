@@ -26,6 +26,12 @@
         <td><%= link_to "Delete", cart_product_path(cp.id), class: "btn btn-danger", method: :delete %></td>
       </tr>
     <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Total: <%= @cart.total_price %>€</td>
+        <td></td>
+      </tr>
   </tbody>
 
 </table>
