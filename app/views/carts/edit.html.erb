@@ -1,0 +1,58 @@
+<div class="row">
+  <h1 class="col-md-10"><%= @cart.name %> content:</h1>
+</div>
+
+<table class="table">
+
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cart.cart_products.each do |cp| %>
+      <tr>
+        <td><%= cp.product.name %></td>
+        <td><%= cp.quantity %></td>
+        <td><%= cp.total_price %>€</td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+<div class="row">
+  <h1 class="col-md-10">Add Products to <%= @cart.name %></h1>
+</div>
+
+<table class="table">
+
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %> </td>
+        <td><%= product.price_in_euros %>€</td>
+        <td>
+          <%= form_with model: CartProduct.new do |f| %>
+            <%= f.number_field :quantity, value: 1, step: 1 %>
+            <%= f.hidden_field :cart_id, value: @cart.id %>
+            <%= f.hidden_field :product_id, value: product.id %>
+            <%= f.submit "Add", class: "btn btn-primary" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>

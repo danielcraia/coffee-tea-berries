@@ -6,4 +6,8 @@ class Product < ApplicationRecord
 
   validates :name, presence: true
   validates :price, numericality: { only_integer: true, greater_than: 0 }
+
+  def price_in_euros
+    price.to_f / 100
+  end
 end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CartsController < ApplicationController
+  before_action :load_cart, only: %w[destroy]
+
   def index
     @carts = Cart.all
   end
@@ -16,17 +18,19 @@ class CartsController < ApplicationController
       redirect_to carts_url
     else
       flash.now[:messages] = cart.errors.full_messages
-      render :new
+      redirect_to new_cart_url
     end
   end
 
+  def edit
+    @cart = Cart.includes(:cart_products, :products).find(params[:id])
+    @products = Product.all
+  end
+
   def destroy
-    if @cart.destroy
-      redirect_to carts_url
-    else
-      flash.now[:messages] = "Cart could not be destroyed!"
-      redirect_to carts_url
-    end
+    flash.now[:messages] = "Cart could not be destroyed!" unless @cart.destroy
+
+    redirect_to carts_url
   end
 
   private
