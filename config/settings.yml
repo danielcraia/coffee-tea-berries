@@ -1,0 +1,10 @@
+discounts:
+  gr1:
+    price_factor: 0.5
+    step: 2
+  sr1:
+    threshold: 3
+    price: 450
+  cf1:
+    threshold: 3
+    price_factor: 0.67
