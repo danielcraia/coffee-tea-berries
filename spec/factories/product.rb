@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :product do
-    name { Faker::Name.name_with_middle }
+    name { Faker::Food.vegetables }
     price { Faker::Number.number(digits: 3) }
     product_code { SecureRandom.uuid }
 
