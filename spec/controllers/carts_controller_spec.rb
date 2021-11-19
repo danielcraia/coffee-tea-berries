@@ -58,7 +58,7 @@ RSpec.describe ::CartsController, type: :controller do
         { cart: { name: "" } }
       end
 
-      it "assigns a newly created but unsaved order as @order" do
+      it "does not change the Cart count" do
         expect { create_cart }.not_to change(Cart, :count)
       end
 
