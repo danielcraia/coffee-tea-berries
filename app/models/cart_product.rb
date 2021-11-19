@@ -4,6 +4,9 @@ class CartProduct < ApplicationRecord
   belongs_to :cart
   belongs_to :product
 
+  validates :quantity, numericality: { only_integer: true, greater_than: 0 }
+  validates :cart_id, uniqueness: { scope: :product_id }
+
   def total_price
     (discounted_price.to_f / 100).round(2)
   end
