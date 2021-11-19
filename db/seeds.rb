@@ -1,7 +1,7 @@
 # Main products
-FactoryBot.create(:product, :coffee, price: 1123)
-FactoryBot.create(:product, :green_tea, price: 311)
-FactoryBot.create(:product, :strawberries, price: 500)
+Product.create(name: "Coffee", product_code: "CF1", price: 1123)
+Product.create(name: "Green tea", product_code: "GR1", price: 311)
+Product.create(name: "Strawberries", product_code: "SR1", price: 500)
 
 # Other products
-FactoryBot.create_list(:product, 3)
+Product.create(name: "Onion", product_code: "ON1", price: 23)
