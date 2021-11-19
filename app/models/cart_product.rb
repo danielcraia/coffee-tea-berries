@@ -14,8 +14,8 @@ class CartProduct < ApplicationRecord
   private
 
   def discounted_price
-    return product.price unless quantity >= discount_threshold &&
-                                product_discounts.any?
+    return normal_price unless quantity >= discount_threshold &&
+                               product_discounts.any?
 
     if settings_step
       discounted = quantity / settings_step * product.price
@@ -25,8 +25,12 @@ class CartProduct < ApplicationRecord
     elsif settings_price
       quantity * settings_price
     elsif settings_factor
-      quantity * 2 / 3 * product.price
+      quantity * settings_factor * product.price
     end
+  end
+
+  def normal_price
+    product.price * quantity
   end
 
   def product_discounts
