@@ -14,7 +14,8 @@ class CartProduct < ApplicationRecord
   private
 
   def discounted_price
-    return product.price unless quantity >= discount_threshold
+    return product.price unless quantity >= discount_threshold &&
+                                product_discounts.any?
 
     if settings_step
       discounted = quantity / settings_step * product.price
@@ -29,7 +30,7 @@ class CartProduct < ApplicationRecord
   end
 
   def product_discounts
-    discount_config[product.product_code.downcase]
+    discount_config[product.product_code.downcase] || OpenStruct.new
   end
 
   def discount_threshold
