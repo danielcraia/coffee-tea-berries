@@ -38,19 +38,19 @@ class CartProduct < ApplicationRecord
   end
 
   def discount_threshold
-    product_discounts.threshold || 1
+    product_discounts["threshold"] || 1
   end
 
   def settings_step
-    product_discounts.step
+    product_discounts["step"]
   end
 
   def settings_price
-    product_discounts.price
+    product_discounts["price"]
   end
 
   def settings_factor
-    product_discounts.price_factor
+    product_discounts["price_factor"]
   end
 
   def discount_config
