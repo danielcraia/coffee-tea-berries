@@ -5,6 +5,7 @@ class CartProductsController < ApplicationController
   before_action :load_cart_product, only: %w[destroy update]
 
   def create
+    @cart_product.reset_quantity unless @cart_product.id
     @cart_product.quantity += create_params[:quantity].to_i
 
     flash.now[:messages] = @cart_product.errors.full_messages unless @cart_product.save

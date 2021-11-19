@@ -26,6 +26,12 @@ RSpec.describe ::CartProductsController, type: :controller do
         expect { create_cart_product }.to change(CartProduct, :count).by(1)
       end
 
+      it "sets quantity to given quntity" do
+        create_cart_product
+        cart_product = CartProduct.find_by(cart_id: cart.id, product_id: product.id)
+        expect(cart_product.quantity).to eq 3
+      end
+
       it "redirects to the edit cart url" do
         create_cart_product
         expect(response).to redirect_to edit_cart_url(cart.id)

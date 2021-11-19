@@ -11,6 +11,10 @@ class CartProduct < ApplicationRecord
     (discounted_price.to_f / 100).round(2)
   end
 
+  def reset_quantity
+    self.quantity = 0
+  end
+
   private
 
   def discounted_price
